@@ -1,0 +1,31 @@
+<div class="alert alert-danger" role="alert" *ngIf="err_status">
+ {{err_message}}
+</div>
+<div class="row">
+    <div class="col-lg-3">
+      <div class="my-3">
+        <label>Categories</label>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </select>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3" *ngFor="let item of products">
+      <div class="card">
+        <img src="{{item.image}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">{{item.description}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a class="btn btn-primary">{{item.price}}</a>
+        </div>
+      </div>
+    </div>
+</div>
+
