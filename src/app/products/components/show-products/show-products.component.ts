@@ -1,5 +1,7 @@
+import { IProduct } from './../../models/iproduct';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-show-products',
@@ -8,11 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowProductsComponent implements OnInit {
 
-  products:any[]=[];
+  products:IProduct[]=[];
   Categories:any[]=[];
   err_status:boolean=false;
   err_message:string='';
-  loading:boolean=false
+  loading:boolean=false;
+  cartProduct_arr:IProduct[]=[];
   constructor(private ProductService:ProductService) { }
 
   ngOnInit(): void {
@@ -57,5 +60,30 @@ export class ShowProductsComponent implements OnInit {
   }
   FliterProducts(event:any){
     (event.target.value=="all") ? this.getAllProducts() : this.getProductsByCategories(event.target.value)
+  }
+
+  AddToCart(productItem:IProduct){
+    console.log(productItem)
+    // الكود دا هيفضل يضيف في اللوكال استوريج كل حاجه بدوس عليها فلو فيه برودكت متكرر هيضيفه تاني بردو فعشان كدا هنغير الكود دا
+    /*this.cartProduct_arr.push(productItem)
+    localStorage.setItem('cart' ,JSON.stringify(this.cartProduct_arr))*/
+
+   // Note => if("cart" in localStorage) To check if this key in localstorage or not
+
+   if("cart" in localStorage){
+    //بقوله هنا سيرش في الاراي لو فيه اي ايتم ال id بتاعه نفس الid ال ضيفته تاني خزن الايتم دا في المتغير دا
+    this.cartProduct_arr = JSON.parse(localStorage.getItem("cart")!)
+    let exist = this.cartProduct_arr.find(item=>item.id == productItem.id) // كدا المتغير دا هيكون ياما فيه داتا ياما مفيهوش
+    if(exist) alert("product is Already in your car")
+    else{
+      this.cartProduct_arr.push(productItem)
+      localStorage.setItem("cart" , JSON.stringify(this.cartProduct_arr))
+    }
+   }
+
+   else{
+    this.cartProduct_arr.push(productItem)
+    localStorage.setItem("cart" , JSON.stringify(this.cartProduct_arr))
+   }
   }
 }
