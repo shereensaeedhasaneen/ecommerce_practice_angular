@@ -3,5 +3,10 @@ export interface IProduct {
   image:string,
   title:string,
   description:string,
-  price:string
+  price:number,
+  category:string,
+  rating:Rating
+}
+export interface Rating {
+  rate:number,count:number
 }

@@ -1,5 +1,6 @@
 import { IProduct } from './../../models/iproduct';
 import { Component, Input, OnInit, Output ,EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -12,17 +13,19 @@ export class ProductCardComponent implements OnInit {
     image: '',
     title: '',
     description: '',
-    price: ''
+    price: 0,
+    category:'',
+    rating:{rate:0,count:0}
   }
   AddButton:boolean=false;
   Quantity_number:number=0
   @Output() item=new EventEmitter();
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
   AddToCart(){
+    this.AddButton=false
     this.item.emit({items:this.products , quantity:this.Quantity_number})
   }
 }
