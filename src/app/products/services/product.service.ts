@@ -20,4 +20,8 @@ export class ProductService {
   get_products_in_specific_category(categoryName:string){
     return this.http.get(`${environment.Base_url}products/category/${categoryName}`)
   }
+
+  getProductDetailsByID(productID:number){
+    return this.http.get(`${environment.Base_url}products/${productID}`)
+  }
 }
