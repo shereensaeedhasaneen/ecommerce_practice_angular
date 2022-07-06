@@ -3,7 +3,11 @@
   <div class="card-body">
     <h5 class="card-title">{{products.title}}</h5>
     <p class="card-text">{{products.description}}</p>
-    <button class="btn btn-primary" (click)="AddToCart()">Add To Cart</button>
+    <button class="btn btn-primary" *ngIf="!AddButton" (click)="AddButton =true">Add To Cart</button>
+    <div class="box d-flex w-50" *ngIf="AddButton">
+        <input type="number" class="form-control" [(ngModel)]="Quantity_number">
+        <button class="btn btn-danger" (click)="AddToCart()">Add</button>
+    </div>
     <a class="btn btn-primary">{{products.price}}</a>
   </div>
 </div>
