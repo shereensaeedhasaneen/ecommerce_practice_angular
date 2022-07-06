@@ -14,6 +14,8 @@ export class ProductCardComponent implements OnInit {
     description: '',
     price: ''
   }
+  AddButton:boolean=false;
+  Quantity_number:number=0
   @Output() item=new EventEmitter();
   constructor() { }
 
@@ -21,6 +23,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   AddToCart(){
-    this.item.emit(this.products)
+    this.item.emit({items:this.products , quantity:this.Quantity_number})
   }
 }

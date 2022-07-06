@@ -1,7 +1,7 @@
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {FormsModule} from '@angular/forms';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ShowProductsComponent } from './components/show-products/show-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -17,7 +17,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     CommonModule,
     ProductsRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }
