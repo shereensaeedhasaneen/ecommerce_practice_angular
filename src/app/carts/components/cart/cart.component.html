@@ -3,9 +3,10 @@
       <div class="col-md-12">
           <div class="p-2">
               <h4>Shopping cart</h4>
+              <h5>You have {{cartProduct_arr.length}} products in shopping cart </h5>
               <div class="d-flex flex-row align-items-center pull-right"><span class="mr-1">Sort by:</span><span class="mr-1 font-weight-bold">Price</span><i class="fa fa-angle-down"></i></div>
           </div>
-          <div *ngFor="let item of cartProduct_arr" class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
+          <div *ngFor="let item of cartProduct_arr ; let i=index" class="d-flex flex-row justify-content-between align-items-center p-2 bg-white mt-4 px-3 rounded">
               <div class="mr-1"><img class="rounded" [src]="item.items.image" width="70"></div>
               <div class="d-flex flex-column align-items-center product-details"><span class="font-weight-bold">{{item.items.title}}</span>
                   <div class="d-flex flex-row product-desc">
@@ -17,9 +18,9 @@
                   <h5 class="text-grey mt-1 mr-1 ml-1">{{item.quantity}}</h5><i class="fa fa-plus text-success"></i>
               </div> -->
               <div class="number">
-                <span class="minus">-</span>
-                <input type="text" [(ngModel)]="item.quantity"/>
-                <span class="plus">+</span>
+                <span class="minus" (click)="minus_Quantity(i)">-</span>
+                <input type="text" (change)="inputChange()" [(ngModel)]="item.quantity"/>
+                <span class="plus" (click)="plus_Quantity(i)">+</span>
               </div>
 
               <div>
@@ -30,11 +31,18 @@
                 <h5 class="text-grey">{{item.items.price*item.quantity}}LE</h5>
               </div>
 
-              <div class="d-flex align-items-center"><i class="fa fa-trash mb-1 text-danger"></i></div>
+              <div class="d-flex align-items-center" (click)="delete_Product(i)"><i class="fa fa-trash mb-1 text-danger"></i></div>
           </div>
 
           <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded">Total<button class="btn btn-outline-warning btn-sm ml-2" type="button">{{getItemsPriceTotal()}}</button></div>
-          <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" type="button">Proceed to Pay</button></div>
+          <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-warning btn-block btn-lg ml-2 pay-button" (click)="clearShoppingCart()" type="button">Clear Shopping Cart</button></div>
+          <div class="d-flex flex-row align-items-center mt-3 p-2 bg-white rounded"><button class="btn btn-success btn-block btn-lg ml-2 pay-button" (click)="AddCart_Api()" type="button">Order Now</button></div>
       </div>
   </div>
+
+  <!-- Start Error Alert -->
+<div class="alert alert-success" role="alert" *ngIf="AddToCartSuccess">
+  Added Successfully
+ </div>
+ <!-- End Error Alert -->
 </div>
