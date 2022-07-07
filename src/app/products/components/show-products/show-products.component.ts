@@ -11,7 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
 export class ShowProductsComponent implements OnInit {
 
   products:IProduct[]=[];
-  Categories:any[]=[];
+  Categories:string[]=[];
   err_status:boolean=false;
   err_message:string='';
   loading:boolean=false;
