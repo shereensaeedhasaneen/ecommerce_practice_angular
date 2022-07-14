@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule} from '@angular/common/http';
-
+import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     DashboardComponent
@@ -11,7 +11,8 @@ import { HttpClientModule} from '@angular/common/http';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
